@@ -16,3 +16,18 @@ exports.create_catalog = async (req, res, next) => {
         res.status(500).json({msg:err })
     }
 }
+
+exports.get_orders = async (req, res, next) => {
+    try{
+        const {seller_id} = req.body
+        const sellers = await User.findOne({_id : seller_id});
+        console.log(sellers)
+        if (!sellers) {
+        return res.status(404).json({ msg: `No sellers` });
+        }
+      
+        res.status(200).json(sellers.orders)
+    }catch(err){
+        res.status(500).json({msg:err })
+    }
+}
