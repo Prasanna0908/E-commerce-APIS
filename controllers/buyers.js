@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 
 exports.get_catalog = async (req, res, next) => {
   try {
@@ -28,18 +29,21 @@ exports.list_of_sellers = async (req, res, next) => {
 
 exports.create_order = async (req, res, next) => {
   try {
-    if (req.body.buyer_id === req.params.seller_id) {
+    let token = req.headers.authorization.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const buyer_id = decoded.id
+    const { order} = req.body
+
+    if (buyer_id === req.params.seller_id) {
       return res.status(404).json({ msg: `Cannot create order to yourself` });
     }
-    console.log(req.params, req.body.buyer_id, req.body.order);
+   
     const id = req.param.seller_id;
     const sellers = await User.findOneAndUpdate(
       { _id: req.params.seller_id },
-      { $push: { orders: { id: req.params.seller_id, order } } },
+      { $push: { orders: { id: buyer_id, order } } },
       { new: true }
     );
-
-    console.log(sellers);
 
     if (!sellers) {
       return res.status(404).json({ msg: `No sellers` });
