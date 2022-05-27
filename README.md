@@ -36,6 +36,8 @@ JWT_EXPIRE=10min
 
 # 2.APIs for buyers
 
+(Insert Bearer Token for all APIs which we get from logging in)
+
 ## GET /api/buyer/list-of-sellers
 
 ![image](https://user-images.githubusercontent.com/65851817/170742640-e085c4d9-acb0-4a2b-9856-2d2241f709b4.png)
