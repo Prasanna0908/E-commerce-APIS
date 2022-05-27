@@ -31,6 +31,10 @@ const UserSchema = new mongoose.Schema({
     type: Array,
     required: false
   },
+  orders:{
+    type: Array,
+    required: false
+  },
   resetPasswordToken: String,
   resetPasswordExpire: Date,
 });

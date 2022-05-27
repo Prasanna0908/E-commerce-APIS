@@ -3,9 +3,9 @@ const express = require("express");
 const app = express();
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
-
+var morgan = require('morgan')
 connectDB();
-
+app.use(morgan('tiny'))
 app.use(express.json());
 
 app.get("/", (req, res, next) => {
@@ -13,9 +13,11 @@ app.get("/", (req, res, next) => {
 });
 
 // Connecting Routes
-app.use("/api/auth", require("./routes/auth"));
 app.use("/api/buyer", require("./routes/buyers"));
 app.use("/api/seller", require("./routes/sellers"));
+app.use("/api/auth", require("./routes/auth"));
+
+
 app.use("/api/private", require("./routes/private"));
 
 // Error Handler Middleware
