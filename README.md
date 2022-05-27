@@ -1,13 +1,18 @@
 # Hybr1d-E-commerce-APIS
 
+Steps to clone the repository
+1. git clone https://github.com/Prasanna0908/Hybr1d-E-commerce-APIS.git
+2. npm install
+3. nodemon start or node start
+
 Create a config.env file in the root directory and fill it with the following informations :
 
+``` 
 PORT=5000
-
 DATABASE_CONNECTION="Your DB URI"
-
 JWT_SECRET="Your JWT Secret key"
-JWT_EXPIRE="10min"
+JWT_EXPIRE=10min
+```
 
 
 
