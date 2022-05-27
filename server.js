@@ -14,6 +14,8 @@ app.get("/", (req, res, next) => {
 
 // Connecting Routes
 app.use("/api/auth", require("./routes/auth"));
+app.use("/api/buyer", require("./routes/buyers"));
+app.use("/api/seller", require("./routes/sellers"));
 app.use("/api/private", require("./routes/private"));
 
 // Error Handler Middleware
